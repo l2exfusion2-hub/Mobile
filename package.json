@@ -1,0 +1,35 @@
+{
+  "name": "wartune-autoforge",
+  "version": "2.7.0-omega",
+  "private": true,
+  "description": "Evidence-led client rule extraction and Java integration workbench",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "bin": {
+    "autoforge": "studio/autoforge.mjs",
+    "autoforge-omega": "omega.mjs"
+  },
+  "scripts": {
+    "alfa": "node alfa/cli.mjs open",
+    "test:alfa": "node --test --test-concurrency=1 alfa/tests/*.test.mjs",
+    "benchmark:alfa": "node alfa/cli.mjs benchmark",
+    "java": "node java-semantic/autoforge.mjs",
+    "universal": "node universal/autoforge.mjs",
+    "test": "node --test tests/*.test.mjs plus/tests/*.test.mjs studio/tests/*.test.mjs studio/next/tests/*.test.mjs studio/items/tests/*.test.mjs studio/gameplay/tests/*.test.mjs studio/learning/tests/*.test.mjs studio/slice/tests/*.test.mjs inspect/tests/*.test.mjs seek/tests/*.test.mjs impact/tests/*.test.mjs opmap/tests/*.test.mjs memory/tests/*.test.mjs",
+    "studio": "node studio/autoforge.mjs",
+    "next": "node studio/next/autoforge.mjs",
+    "items": "node studio/items/autoforge.mjs",
+    "gameplay": "node studio/gameplay/autoforge.mjs",
+    "learning": "node studio/learning/autoforge.mjs",
+    "flow-console": "node studio/flow-console.mjs",
+    "omega": "node omega.mjs",
+    "arena": "node arena/autoforge.mjs",
+    "inspect": "node inspect/autoforge.mjs",
+    "seek": "node seek/autoforge.mjs",
+    "impact": "node impact/autoforge.mjs",
+    "opmap": "node opmap/autoforge.mjs",
+    "memory": "node memory/autoforge.mjs"
+  }
+}

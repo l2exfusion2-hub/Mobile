@@ -1,0 +1,39 @@
+# AutoForge — prompt para o Arena
+
+Trabalhe na main do repositorio standalone vanhellsingz/autoforge para a ferramenta. O backend Wartune continua no seu checkout proprio; preservar seu diff e configuracao efetiva. Nunca copiar este repositorio por cima do backend.
+
+## Studio: seis ferramentas integradas
+
+1. Leia docs/STUDIO.md e docs/README.md. Execute node studio/autoforge.mjs help.
+2. Capture a acao no runner autorizado com o Flight Recorder; nao inicie/pare servicos nem recarregue o navegador para capturar. Se CDP/sessao/decoder nao estiverem disponiveis, registre o bloqueio; nao invente opcodes.
+3. Gere o causal-context.json pelo Core no backend atual. Use diagnose ou bundle para relacionar a captura aos candidatos do codigo e aos logs Java com IDs explicitos.
+4. Compare a mesma acao/entradas entre referencia e Java. Exija inventario/moedas/UI/persistencia e artefatos com commit, ambiente, teste e hashes. Rode audit para detectar duplicacao, perda de tropas e debito repetido.
+5. Escreva um contrato dentro da gramatica suportada, com fontes observadas e metodos exatos do backend. Gere servico/handler/teste com generate. Confirme transacoes reais, propriedade da sessao, codecs e readback. O adaptador em memoria e somente de teste.
+6. Use replay para preparar a reproducao; executar acoes exige adaptador revisado e autorizacao explicita. Use bridge/import para transportar relatorios pelos logs do GitHub sem Cloudflare.
+7. Integre no backend e rode validacao focada. As ferramentas nao fazem deploy do Wartune. Paradas/reinicios de servicos e testes disruptivos precisam de autorizacao especifica; nao interrompa o trabalho de outro agente.
+
+Sem evidencias, use UNVERIFIED. Classes geradas, imports, HTTP 200 e frames recebidos nao comprovam a funcionalidade completa. Replaneje se o backend mudou. Nao remova funcionalidade porque um scanner nao a localizou.
+
+## Core 2.4: extracao e instalacao limitada de tipos puros
+
+1. Execute `node run.mjs --client CAMINHO_DO_CLIENTE --out CAMINHO_DA_ENTREGA --backend CAMINHO_JAVA_V1`. Sem --client, usa o cliente preservado na raiz do repositório. O diretório de entrega precisa ficar fora da árvore do cliente. Node20+ e JDK21; JAVA_HOME é reconhecido. `--discover-only` permite investigação sem Java.
+2. Abra COMECE_AQUI.md, INPUTS.md e tasks/01...04 na entrega. arena-plan.json contém referências candidatas do backend com linha e hash; elas não comprovam integração. Confira manifest.json validated:true, handoff.json e os relatórios *.evidence.json. Uma execução com falha invalida o manifest anterior. As fórmulas são comparadas com transcrições JS independentes revisadas; isso não é captura da página em execução.
+3. Use discovery.json para navegar fórmulas, itens e opcodes. Classificação por tipo não implementa o efeito. Não conceder itens, recursos ou recompensas para efeitos desconhecidos. O vocabulário de missões também não implementa seus handlers.
+4. Execute `node integrate.mjs --from CAMINHO_DA_ENTREGA --backend CAMINHO_JAVA_V1` para prévia. Depois acrescente --apply. O instalador coloca somente classes geradas no pacote com.wartuneultra.autoforge.v2. Não cria migrations nem conecta handlers. Se houver conflito de classe existente, resolva explicitamente; não sobrescreva alterações manuais.
+5. Conecte os métodos puros aos serviços existentes: atributos devem consumir o estado efetivo completo; não somar FightingCapacity do mesmo bônus duas vezes. Equipamento/consumível precisa validar posse, nível, classe, quantidade, limites, slots, moeda e transação. Tempo e RNG devem ser entradas explícitas. Material de forja deve vir dos slots persistidos, não presumido zero porque C2S não tem corpo.
+6. Teste serviço com MariaDB e protocolo em uma amostra por ramo (equipar/trocar/retirar, vender, consumir, encantar sucesso/falha/limite). Repetição de pacote não pode duplicar concessão ou cobrança. Verifique S2C e persistência após relogin. S2C301 precisa existir antes da inicialização de SRoleWnd; S2C150 registra listeners usados pelo113. Não substituir a interface por placeholders.
+7. Para aplicação eficiente, compile e execute testes primeiro, guarde SHA do artefato e use o procedimento autorizado de aplicação local. Faça preflight de PID/porta/diretório/esquema efetivo, backup antes de migrações pendentes e verificação de compatibilidade do JAR de rollback. Troque apenas o Java verificado. Após reinício, verifique health e hash; o gate deve testar primeiro login, inventário/cliques e edifício, depois campanha. Registre a primeira condição que falhar e preserve resultados positivos. Não executar um gate distante para declarar funcionalidades básicas prontas.
+8. Entregue arquivos integrados, chamadas conectadas, testes efetivamente executados, JAR/PID/hash e pendências. Não transformar validação de fórmula em alegação de gameplay completo.
+
+Prioridade para próximas extrações: agregação de atributos/equipamentos/passivas; efeitos de consumíveis por Property e catálogos; ferreiro por ramo de equipamento; condições de missão por dispatcher. Cada ampliação deve trazer âncora única, hashes e offsets, entradas resolvidas, oracle independente e casos positivos/de borda. O formato de capacity.mjs e forge-cost.mjs serve de exemplo. Não rodar bundle inteiro, scripts externos ou bootstrap para preencher uma lacuna.
+
+Para banco e painel: leia MYSQL_ADMIN.md e as dependências específicas de cada tarefa. Confira o commit e os hashes em analysis-snapshot.json no checkout ativo; imports não comprovam implementação funcional. Métodos exatos/opcodes estão em integration-contracts.json; tabelas/migrations/editores em data-admin-map.json. MYSQL_PREFLIGHT.sql é somente leitura e não foi executado pela ferramenta. Registre a avaliação ausente/parcial/funcional/divergente com --assessment e evidências do mesmo commit; não reclassifique desconhecido por palpite. Preserve dados, permissões, auditoria, migrations aplicadas e alterações concorrentes. Edite pelo serviço de domínio com recálculo e atualização de sessão, não com SQL avulso sobre atributos derivados.
+
+Cada evidência deve manter commit, hashes, ambiente e teste/extrator. Leia EVIDENCE_LINEAGE.md e evidence-lineage.json. Código analisado, corpus Java/JS, teste de serviço, gravação no painel e versão implantada são escopos diferentes. Não transferir sucesso de outra branch para o JAR atual. Nas avaliações anexadas, cada evidência exige commit, environment{name,kind}, testId; runtime exige deployment{commit,jarSha256} correspondente ao snapshot revisado.
+
+Antes do --apply, o instalador exige backend-snapshot.json do destino e bloqueia mudança de commit/arquivos críticos. Regere a fila após editar o backend; não remova a proteção. Avaliação funcional precisa de artefatos verificáveis, não só descrições: logs/vídeos provam integridade, JUnit registra resultados sem identidade de implantação e json-report confere commit/ambiente/teste/JAR. Fontes externas só entram por --editor-root NOME=CAMINHO, somente leitura. Não editar o painel legado. O exemplo é vinculado ao commit da release indicado em release-context.json; ele não comprova o JAR ativo. Consulte a CI isolada e seus artefatos para a execução independente da ferramenta.
+
+
+## AutoForge Studio Next (2.6) — diagnóstico adicional
+
+Leia docs/STUDIO_NEXT.md. Execute node studio/next/autoforge.mjs help e npm test no checkout de vanhellsingz/autoforge. Use drift snapshot/diff para rastrear mudanças do cliente; gaps para priorizar opcodes candidatos; calibrate somente com headers revisados; stats para comparar amostras probabilísticas; pack para transportar relatórios aprovados. A entrada Next delega os comandos antigos ao Studio 2.5. Não altere Java, cliente ou banco pela ausência de um case lexical. Evidência ausente permanece UNVERIFIED. Não acione deploy/reinício do Wartune nem modifique htdocs\\2. Preserve diffs de outros agentes. 
